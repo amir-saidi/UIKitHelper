@@ -13,9 +13,9 @@ public enum AlertDefaultAction {
     
     var action: UIAlertAction {
         switch self {
-        case .ok_action: UIAlertAction(title: "Ok", style: .default, handler: nil)
-        case .dismiss_action: UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-        case .cancel_action: UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        case .ok_action: return UIAlertAction(title: "Ok", style: .default, handler: nil)
+        case .dismiss_action: return UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        case .cancel_action: return UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         }
     }
 }
@@ -57,8 +57,12 @@ public func Alert(title: String, message: String, defaultAction: AlertDefaultAct
     }
     
     if defaultAction == nil && actions.count == 0 {
-        Timer.scheduledTimer(withTimeInterval: dismissTime, repeats: false) { (timer) in
-            controller.dismiss(animated: true, completion: nil)
+        if #available(iOS 10.0, *) {
+            Timer.scheduledTimer(withTimeInterval: dismissTime, repeats: false) { (timer) in
+                controller.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     controller.present(alert, animated: true, completion: nil)

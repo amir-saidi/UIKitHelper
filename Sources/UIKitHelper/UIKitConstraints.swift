@@ -10,13 +10,13 @@ import UIKit
 
 // MARK: - Constraint based on given view
 
+@available(iOS 9.0, *)
 public extension UIView {
     
-     @discardableResult func applyConstraints() -> UIView {
+    @discardableResult func applyConstraints() -> UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         return self
     }
-    
     
     @discardableResult func fillSuperView(padding: CGFloat = 0) -> UIView {
         guard let superview = self.superview else { return self }
@@ -45,7 +45,6 @@ public extension UIView {
         return self
     }
     
-    
     @discardableResult func vCenter(to view: UIView, const: CGFloat = 0) -> UIView {
         self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         return self
@@ -55,7 +54,6 @@ public extension UIView {
         self.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         return self
     }
-    
     
     @discardableResult func leading(to view: UIView, const: CGFloat = 0, reverse: Bool = false) -> UIView {
         let anchor = reverse ? view.trailingAnchor : view.leadingAnchor
@@ -97,12 +95,10 @@ public extension UIView {
         return self
     }
     
-    
     @discardableResult func lessTharOrEquealWidth(to constant: CGFloat) -> UIView {
         self.widthAnchor.constraint(lessThanOrEqualToConstant: constant).isActive = true
         return self
     }
-    
     
     @discardableResult func greaterTharOrEquealWidth(to constant: CGFloat) -> UIView {
         self.widthAnchor.constraint(greaterThanOrEqualToConstant: constant).isActive = true
@@ -123,7 +119,7 @@ public extension UIView {
 
 
 // MARK: - Constraint based on given anchors
-
+@available(iOS 9.0, *)
 public extension UIView {
     
     @discardableResult func vCenter(to anchor: NSLayoutYAxisAnchor, const: CGFloat = 0) -> UIView {
@@ -135,7 +131,6 @@ public extension UIView {
         self.centerXAnchor.constraint(equalTo: anchor).isActive = true
         return self
     }
-    
     
     @discardableResult func leading(to anchor: NSLayoutXAxisAnchor, const: CGFloat = 0) -> UIView {
         self.leadingAnchor.constraint(equalTo: anchor, constant: const).isActive = true
