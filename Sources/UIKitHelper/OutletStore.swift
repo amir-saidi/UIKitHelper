@@ -10,11 +10,14 @@ import UIKit
 
 // MARK: - Fields
 
-func getUILabel(text: String, size:CGFloat = 17, weight:UIFont.Weight = .regular, color: UIColor = AppColors.text.color, numberOfLines: NSInteger = 1) -> UILabel {
+@available(iOS 8.2, *)
+func getUILabel(text: String, size:CGFloat = 17, weight:UIFont.Weight = .regular, color: UIColor? = nil, numberOfLines: NSInteger = 1) -> UILabel {
     let lbl = UILabel()
     lbl.font = .systemFont(ofSize: size, weight: weight)
     lbl.text = text
-    lbl.textColor = color
+    if color != nil {
+        lbl.textColor = color
+    }
     lbl.numberOfLines = numberOfLines
     return lbl
 }
@@ -55,6 +58,7 @@ func getUIButton(title: String, titleColor: UIColor = .systemBlue, backgroundCol
 
 // MARK: - Stack
 
+@available(iOS 9.0, *)
 func HStack(subviews: [UIView]?, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill, spacing: CGFloat = 10) -> UIStackView {
     let stack = subviews == nil ? UIStackView() : UIStackView(arrangedSubviews: subviews!)
     stack.axis = .horizontal
@@ -64,6 +68,7 @@ func HStack(subviews: [UIView]?, alignment: UIStackView.Alignment = .fill, distr
     return stack
 }
 
+@available(iOS 9.0, *)
 func VStack(subviews: [UIView]?, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill, spacing: CGFloat = 10) -> UIStackView {
     let stack = subviews == nil ? UIStackView() : UIStackView(arrangedSubviews: subviews!)
     stack.axis = .vertical

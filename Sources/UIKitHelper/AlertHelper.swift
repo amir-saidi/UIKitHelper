@@ -33,6 +33,7 @@ public enum AlertDefaultAction {
         - actions: Array of UIAlertActions that will contain Alert Controller
         - dismissTime: This come in use for usin the Alert as self destruct Alert Message. It will be used if defaultActions is nil and actions is empty. Default value is 2 seconds
 */
+@available(iOS 10.0, *)
 public func Alert(title: String, message: String, defaultAction: AlertDefaultAction? = nil , actions: [UIAlertAction] = [], dismissTime: TimeInterval = 2) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
@@ -108,7 +109,7 @@ public extension UIViewController {
             - actions: Array of UIAlertActions that will contain Alert Controller
             - dismissTime: This come in use for usin the Alert as self destruct Alert Message. It will be used if defaultActions is nil and actions is empty. Default value is 2 seconds
     */
-    public func Alert(title: String, message: String, defaultAction: AlertDefaultAction? = nil , actions: [UIAlertAction] = [], dismissTime: TimeInterval = 2) {
+    func Alert(title: String, message: String, defaultAction: AlertDefaultAction? = nil , actions: [UIAlertAction] = [], dismissTime: TimeInterval = 2) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let defaultAct = defaultAction {
@@ -142,7 +143,11 @@ public extension UIViewController {
         let size = CGSize(width: self.view.frame.width - 10, height: self.view.frame.height - 40)
         
         let messageLabel = UILabel()
-        messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        if #available(iOS 8.2, *) {
+            messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        } else {
+            // Fallback on earlier versions
+        }
         messageLabel.textColor = .white
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
@@ -156,13 +161,17 @@ public extension UIViewController {
         messageBackground.addSubview(messageLabel)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        [
-            messageLabel.leadingAnchor.constraint(equalTo: messageBackground.leadingAnchor, constant: 5),
-            messageLabel.trailingAnchor.constraint(equalTo: messageBackground.trailingAnchor, constant: -5),
-            messageLabel.topAnchor.constraint(equalTo: messageBackground.topAnchor, constant: 5),
-            messageLabel.bottomAnchor.constraint(equalTo: messageBackground.bottomAnchor, constant: -5)
-            ].forEach { (constrint) in
-                constrint.isActive = true
+        if #available(iOS 9.0, *) {
+            [
+                messageLabel.leadingAnchor.constraint(equalTo: messageBackground.leadingAnchor, constant: 5),
+                messageLabel.trailingAnchor.constraint(equalTo: messageBackground.trailingAnchor, constant: -5),
+                messageLabel.topAnchor.constraint(equalTo: messageBackground.topAnchor, constant: 5),
+                messageLabel.bottomAnchor.constraint(equalTo: messageBackground.bottomAnchor, constant: -5)
+                ].forEach { (constrint) in
+                    constrint.isActive = true
+            }
+        } else {
+            // Fallback on earlier versions
         }
         
         messageBackground.backgroundColor = UIColor(white: 0, alpha: 0.8)
