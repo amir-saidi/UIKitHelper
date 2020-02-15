@@ -11,6 +11,9 @@ import UIKit
 // MARK: - Constraint based on given view
 
 @available(iOS 9.0, *)
+/**
+ This extension holds chain functions that make easier to manipulate with constrints programatically
+*/
 public extension UIView {
     
     @discardableResult func applyConstraints() -> UIView {
@@ -22,6 +25,20 @@ public extension UIView {
         guard let superview = self.superview else { return self }
         self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
         self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
+        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
+        self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
+        return self
+    }
+    
+    @discardableResult func vFillSuperView(padding: CGFloat = 0) -> UIView {
+        guard let superview = self.superview else { return self }
+        self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
+        self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
+        return self
+    }
+    
+    @discardableResult func hFillSuperView(padding: CGFloat = 0) -> UIView {
+        guard let superview = self.superview else { return self }
         self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: padding).isActive = true
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
         return self
