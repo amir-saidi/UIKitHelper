@@ -16,7 +16,7 @@ public func getUIView(frame: CGRect = .zero, backgroundColor: UIColor = .clear, 
     view.layer.borderWidth = borderWidth
     view.layer.borderColor = borderColor.cgColor
     view.layer.cornerRadius = cornerRadius
-    view.isUserInteractionEnabled = isUSerInteractionEnabled
+    view.isUserInteractionEnabled = isUserInteractionEnabled
     view.alpha = alpha
     view.isHidden = isHidden
     return view
@@ -72,7 +72,7 @@ public func getUITextView(text: String = "", font: UIFont = .systemFont(ofSize: 
 
 // MARK: - Buttons
 
-public func getSystemUIButton(frame: CGRect = .zero title: String = "", image: UIImage? = nil, titleColor: UIColor = .systemBlue, backgroundColor: UIColor = .white, tintColor: UIColor = .clear,  borderWidth: CGFloat = 0, borderColor: UIColor = .clear, cornerRadius: CGFloat = 0,  alpha: CGFloat = 1, isHidden: Bool = false, enabled: Bool = true) -> UIButton {
+public func getSystemUIButton(frame: CGRect = .zero, title: String = "", image: UIImage? = nil, titleColor: UIColor = .systemBlue, backgroundColor: UIColor = .white, tintColor: UIColor = .clear,  borderWidth: CGFloat = 0, borderColor: UIColor = .clear, cornerRadius: CGFloat = 0,  alpha: CGFloat = 1, isHidden: Bool = false, enabled: Bool = true) -> UIButton {
     let button = UIButton(type: .system)
     button.frame = frame
     if image != nil { button.setImage(image, for: .normal) }
@@ -89,7 +89,7 @@ public func getSystemUIButton(frame: CGRect = .zero title: String = "", image: U
     return button
 }
 
-public func getUIButton(frame: CGRect = .zero title: String = "", image: UIImage? = nil, titleColor: UIColor = .systemBlue, backgroundColor: UIColor = .white, tintColor: UIColor = .clear, borderWidth: CGFloat = 0, borderColor: UIColor = .clear, cornerRadius: CGFloat = 0,  alpha: CGFloat = 1, isHidden: Bool = false, enabled: Bool = true) -> UIButton {
+public func getUIButton(frame: CGRect = .zero, title: String = "", image: UIImage? = nil, titleColor: UIColor = .systemBlue, backgroundColor: UIColor = .white, tintColor: UIColor = .clear, borderWidth: CGFloat = 0, borderColor: UIColor = .clear, cornerRadius: CGFloat = 0,  alpha: CGFloat = 1, isHidden: Bool = false, enabled: Bool = true) -> UIButton {
     let button = UIButton(frame: frame)
     if image != nil { button.setImage(image, for: .normal) }
     button.backgroundColor = backgroundColor
