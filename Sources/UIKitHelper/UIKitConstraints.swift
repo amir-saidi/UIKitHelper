@@ -63,12 +63,12 @@ public extension UIView {
     }
     
     @discardableResult func vCenter(to view: UIView, const: CGFloat = 0) -> UIView {
-        self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: const).isActive = true
         return self
     }
     
     @discardableResult func hCenter(to view: UIView, const: CGFloat = 0) -> UIView {
-        self.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: const).isActive = true
         return self
     }
     
@@ -145,7 +145,7 @@ public extension UIView {
     }
     
     @discardableResult func hCenter(to anchor: NSLayoutXAxisAnchor, const: CGFloat = 0) -> UIView {
-        self.centerXAnchor.constraint(equalTo: anchor).isActive = true
+        self.centerXAnchor.constraint(equalTo: anchor, constant: const).isActive = true
         return self
     }
     
