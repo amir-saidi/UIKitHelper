@@ -30,10 +30,24 @@ public extension UIView {
         return self
     }
     
+    @discardableResult func fillView(view: UIView, padding: CGFloat = 0) -> UIView {
+        self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
+        self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
+        self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
+        return self
+    }
+    
     @discardableResult func vFillSuperView(padding: CGFloat = 0) -> UIView {
         guard let superview = self.superview else { return self }
         self.topAnchor.constraint(equalTo: superview.topAnchor, constant: padding).isActive = true
         self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -padding).isActive = true
+        return self
+    }
+    
+    @discardableResult func vFillView(view: UIView, padding: CGFloat = 0) -> UIView {
+        self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding).isActive = true
         return self
     }
     
@@ -43,6 +57,13 @@ public extension UIView {
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -padding).isActive = true
         return self
     }
+    
+    @discardableResult func hFillView(view: UIView, padding: CGFloat = 0) -> UIView {
+        self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding).isActive = true
+        self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding).isActive = true
+        return self
+    }
+    
     
     @discardableResult func centerToContainer() -> UIView {
         guard let superview = self.superview else { return self }
@@ -59,6 +80,23 @@ public extension UIView {
         self.bottomAnchor.constraint(lessThanOrEqualTo: superview.bottomAnchor, constant: -margin).isActive = true
         self.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: margin).isActive = true
         self.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -margin).isActive = true
+        return self
+    }
+    
+    @discardableResult func centerToHorizontalFillContainer(margin: CGFloat = 0) -> UIView {
+        guard let superview = self.superview else { return self }
+        self.centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
+        self.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: margin).isActive = true
+        self.trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -margin).isActive = true
+        return self
+    }
+    
+    @discardableResult func centerToVerticalFillContainer(margin: CGFloat = 0) -> UIView {
+        guard let superview = self.superview else { return self }
+        self.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
+        self.topAnchor.constraint(greaterThanOrEqualTo: superview.topAnchor, constant: margin).isActive = true
+        self.bottomAnchor.constraint(lessThanOrEqualTo: superview.bottomAnchor, constant: -margin).isActive = true
         return self
     }
     

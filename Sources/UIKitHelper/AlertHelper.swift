@@ -133,6 +133,41 @@ public extension UIViewController {
     
     
     /**
+     Return Allert in the view from where it is colled
+    
+        - important: It will be available only inside UIViewController
+        - returns:UIAlertController
+        - parameters:
+            - title: The title of the alert controller
+            - message: The message the alert controller will contain
+            - defaultAction: it is an uialertaction from AlertDefaultAction enum that is used mainly for dismissing the alert controller
+            - actions: Array of UIAlertActions that will contain Alert Controller
+            - dismissTime: This come in use for usin the Alert as self destruct Alert Message. It will be used if defaultActions is nil and actions is empty. Default value is 2 seconds
+    */
+    func getAlert(title: String, message: String, defaultAction: AlertDefaultAction? = nil , actions: [UIAlertAction] = [], dismissTime: TimeInterval = 2) -> UIAlertController {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            if let defaultAct = defaultAction {
+                alert.addAction(defaultAct.action)
+            }
+            
+            for action: UIAlertAction in actions {
+                alert.addAction(action)
+            }
+            
+            if defaultAction == nil && actions.count == 0 {
+                if #available(iOS 10.0, *) {
+                    Timer.scheduledTimer(withTimeInterval: dismissTime, repeats: false) { (timer) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                }
+            }
+            return alert
+    }
+    
+    
+    /**
      Show message view of the bottom of the screen that will appear with animation and will be visible for about 1 second.
     
         - important: It is similar to Tost messages is android.
